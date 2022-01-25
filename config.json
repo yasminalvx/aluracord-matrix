@@ -1,5 +1,5 @@
 {
-    "name": "Aluracord - Matrix (peas)",
+    "name": "Aluracord - Matrix (yasminalvx)",
     "theme": {
         "colors": {
             "primary": {
@@ -27,7 +27,17 @@
                 "800": "#181F25",
                 "900": "#101418",
                 "999": "#080A0C"
+            },
+            "neon": {
+                "aqua": "#05E8F6",
+                "pink": "#F204E6"
+            },
+            "transparent": {
+                "box1": "rgba(0, 0, 0, 0.86)",
+                "box2": "rgba(52, 52, 52, 0.74)"
             }
+            
+
         }
     },
     "stickers": [

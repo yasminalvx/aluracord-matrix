@@ -37,9 +37,10 @@ function Titulo(props) {
             <Tag> {props.children} </Tag>
             <style jsx>{`
                 ${Tag} {
-                    color: ${appConfig.theme.colors.neutrals['000']};
+                    color: ${appConfig.theme.colors.neon["aqua"]};
                     font-size: 24px;
                     font-weight: 600;
+                    text-shadow: 0px 0px 6px rgba(4, 197, 209, 0.8);
                 }
             `}</style>
         </>
@@ -67,8 +68,8 @@ export default function PaginaInicial() {
             <Box
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: appConfig.theme.colors.primary[500],
-                    backgroundImage: 'url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)',
+                    // backgroundColor: appConfig.theme.colors.neon["aqua"],
+                    backgroundImage: 'url(https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80)',
                     backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 }}
             >
@@ -84,7 +85,7 @@ export default function PaginaInicial() {
                         width: '100%', maxWidth: '700px',
                         borderRadius: '5px', padding: '32px', margin: '16px',
                         boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-                        backgroundColor: appConfig.theme.colors.neutrals[700],
+                        backgroundColor: appConfig.theme.colors.transparent["box1"],
                     }}
                 >
                     {/* Formulário */}
@@ -95,7 +96,7 @@ export default function PaginaInicial() {
                             width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
                         }}
                     >
-                        <Titulo tag="h2">Boas vindas de volta!</Titulo>
+                        <Titulo tag="h2">Boas vindas! Vamos jogar?</Titulo>
                         <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
                             {appConfig.name}
                         </Text>
@@ -105,22 +106,26 @@ export default function PaginaInicial() {
                             textFieldColors={{
                                 neutral: {
                                     textColor: appConfig.theme.colors.neutrals[200],
-                                    mainColor: appConfig.theme.colors.neutrals[900],
-                                    mainColorHighlight: appConfig.theme.colors.primary[500],
-                                    backgroundColor: appConfig.theme.colors.neutrals[800],
+                                    mainColor: appConfig.theme.colors.neon["aqua"],
+                                    mainColorHighlight: appConfig.theme.colors.neon["aqua"],
+                                    backgroundColor: 'black',
                                 },
                             }}
                         />
                         <Button
+                            styleSheet={{
+                                backgroundColor: '#000'
+                            }}
                             type='submit'
                             label='Entrar'
                             fullWidth
                             buttonColors={{
-                                contrastColor: appConfig.theme.colors.neutrals["000"],
-                                mainColor: appConfig.theme.colors.primary[500],
-                                mainColorLight: appConfig.theme.colors.primary[400],
-                                mainColorStrong: appConfig.theme.colors.primary[600],
+                                contrastColor: '#fff',
+                                mainColor: appConfig.theme.colors.neon["aqua"],
                             }}
+                            
+                            variant='secondary'
+
                         />
                     </Box>
                     {/* Formulário */}
@@ -134,9 +139,9 @@ export default function PaginaInicial() {
                             alignItems: 'center',
                             maxWidth: '200px',
                             padding: '16px',
-                            backgroundColor: appConfig.theme.colors.neutrals[800],
+                            backgroundColor: appConfig.theme.colors.neutrals[900],
                             border: '1px solid',
-                            borderColor: appConfig.theme.colors.neutrals[999],
+                            borderColor: appConfig.theme.colors.neon["aqua"],
                             borderRadius: '10px',
                             flex: 1,
                             minHeight: '240px',
