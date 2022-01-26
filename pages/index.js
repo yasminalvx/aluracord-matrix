@@ -1,34 +1,9 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import React, { useEffect } from 'react';
+import {useRouter} from 'next/router';
 import appConfig from '../config.json'
 
-function GlobalStyle() {
-    return (
-        <style global jsx>{`
-            * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-            }
-            body {
-            font-family: 'Open Sans', sans-serif;
-            }
-            /* App fit Height */ 
-            html, body, #__next {
-            min-height: 100vh;
-            display: flex;
-            flex: 1;
-            }
-            #__next {
-            flex: 1;
-            }
-            #__next > * {
-            flex: 1;
-            }
-            /* ./App fit Height */ 
-        `}</style>
-    );
-}
+
 
 function Titulo(props) {
     const Tag = props.tag || 'h1';
@@ -60,11 +35,30 @@ function Titulo(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
-    const username = 'yasminalvx';
+    // const username = 'yasminalvx';
+    const [githubAccount, setGithubAccount] = React.useState('');
+    const [username, setUsername]= React.useState('yasminalvx');
+    const roteamento = useRouter();
+
+
+    useEffect(() => {
+        fetch(`https://api.github.com/users/${username}`)
+            .then((resposta) => {
+                if (!resposta.ok) {
+                    throw Error('Não conseguiu fazer a requisição')
+                }
+                return resposta.json()
+            })
+            .then((resultado) => {
+                setGithubAccount(resultado)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    }, [username])
 
     return (
         <>
-            <GlobalStyle />
             <Box
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -91,6 +85,11 @@ export default function PaginaInicial() {
                     {/* Formulário */}
                     <Box
                         as="form"
+                        onSubmit={function (InfosDoEvento){
+                            InfosDoEvento.preventDefault();
+                            roteamento.push('/chat')
+
+                        }}
                         styleSheet={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                             width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -103,6 +102,11 @@ export default function PaginaInicial() {
 
                         <TextField
                             fullWidth
+                            value={username}
+                            onChange={ function handler(event){
+                                const valor = event.target.value;
+                                setUsername(valor);
+                            }}
                             textFieldColors={{
                                 neutral: {
                                     textColor: appConfig.theme.colors.neutrals[200],
@@ -112,6 +116,16 @@ export default function PaginaInicial() {
                                 },
                             }}
                         />
+
+                        {/* <input 
+                            type="text"
+                            value={username}
+                            onChange={function handler(event){
+                                const valor = event.target.value;
+                                setUsername(valor);
+                            }}  
+                        
+                        /> */}
                         <Button
                             styleSheet={{
                                 backgroundColor: '#000'
@@ -151,19 +165,33 @@ export default function PaginaInicial() {
                             styleSheet={{
                                 borderRadius: '50%',
                                 marginBottom: '16px',
+                                
                             }}
-                            src={`https://github.com/${username}.png`}
+                            
+                            src={username.length > 2 ? `https://github.com/${username}.png` : `https://github.com/user.png`}
                         />
                         <Text
                             variant="body4"
                             styleSheet={{
-                                color: appConfig.theme.colors.neutrals[200],
-                                backgroundColor: appConfig.theme.colors.neutrals[900],
+                                color: appConfig.theme.colors.neutrals["200"],
+                                backgroundColor: appConfig.theme.colors.neutrals["999"],
                                 padding: '3px 10px',
-                                borderRadius: '1000px'
+                                borderRadius: '1000px',
                             }}
                         >
-                            {username}
+                            {username.length > 2 ? githubAccount.name: "Invalid"}
+                            {githubAccount.name == null ? username: ""}
+                        </Text>
+                        <Text
+                            variant="body4"
+                            styleSheet={{
+                                color: appConfig.theme.colors.neutrals["200"],
+                                padding: '3px 10px',
+                                borderRadius: '1000px',
+                                marginTop: '8px'
+                            }}
+                        >
+                            {username.length > 2 ? githubAccount.location: ""}
                         </Text>
                     </Box>
                     {/* Photo Area */}
