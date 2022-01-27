@@ -1,6 +1,6 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React, { useEffect } from 'react';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import appConfig from '../config.json'
 
 
@@ -37,7 +37,7 @@ function Titulo(props) {
 export default function PaginaInicial() {
     // const username = 'yasminalvx';
     const [githubAccount, setGithubAccount] = React.useState('');
-    const [username, setUsername]= React.useState('yasminalvx');
+    const [username, setUsername] = React.useState('yasminalvx');
     const roteamento = useRouter();
 
 
@@ -85,7 +85,7 @@ export default function PaginaInicial() {
                     {/* Formulário */}
                     <Box
                         as="form"
-                        onSubmit={function (InfosDoEvento){
+                        onSubmit={function (InfosDoEvento) {
                             InfosDoEvento.preventDefault();
                             roteamento.push('/chat')
 
@@ -103,7 +103,7 @@ export default function PaginaInicial() {
                         <TextField
                             fullWidth
                             value={username}
-                            onChange={ function handler(event){
+                            onChange={function handler(event) {
                                 const valor = event.target.value;
                                 setUsername(valor);
                             }}
@@ -137,7 +137,7 @@ export default function PaginaInicial() {
                                 contrastColor: '#fff',
                                 mainColor: appConfig.theme.colors.neon["aqua"],
                             }}
-                            
+
                             variant='secondary'
 
                         />
@@ -165,9 +165,9 @@ export default function PaginaInicial() {
                             styleSheet={{
                                 borderRadius: '50%',
                                 marginBottom: '16px',
-                                
+
                             }}
-                            
+
                             src={username.length > 2 ? `https://github.com/${username}.png` : `https://github.com/user.png`}
                         />
                         <Text
@@ -179,8 +179,8 @@ export default function PaginaInicial() {
                                 borderRadius: '1000px',
                             }}
                         >
-                            {username.length > 2 ? githubAccount.name: "Invalid"}
-                            {githubAccount.name == null ? username: ""}
+                            {username.length > 2 ? githubAccount.name : "Invalid"}
+                            {githubAccount.name == null ? username : ""}
                         </Text>
                         <Text
                             variant="body4"
@@ -191,7 +191,7 @@ export default function PaginaInicial() {
                                 marginTop: '8px'
                             }}
                         >
-                            {username.length > 2 ? githubAccount.location: ""}
+                            {username.length > 2 ? githubAccount.location : ""}
                         </Text>
                     </Box>
                     {/* Photo Area */}
